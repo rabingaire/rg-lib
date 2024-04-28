@@ -16,19 +16,21 @@ typedef enum slice_type {
 
 typedef struct slice {
   Slice_dt type;
-  void* from;
-  void* from_type;
+  void *from;
+  void *from_type;
   int size;
 } Slice_t;
 
-Slice_t* slice_new(Slice_dt type, void *from, int start, int end);
-void slice_print(const Slice_t* slc);
+Slice_t *slice_new(Slice_dt type, void *from, int start, int end);
+void slice_print(const Slice_t *slc);
 
-static inline void _calculate_start_pointer_for_type(Slice_t* dest, Slice_dt type, void* from, int start) {
+static inline void _calculate_start_pointer_for_type(Slice_t *dest,
+                                                     Slice_dt type, void *from,
+                                                     int start) {
   if (type == VECTOR) {
-    Vector_t* vec = from;
+    Vector_t *vec = (Vector_t *)from;
     dest->from = vec->values + start;
-    dest->from_type = (void*)&vec->type;
+    dest->from_type = (void *)&vec->type;
   } else {
     _unsupported_type();
   }

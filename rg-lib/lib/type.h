@@ -8,11 +8,9 @@
 #ifndef type_h
 #define type_h
 
-#include <stdbool.h>
 #include <assert.h>
+#include <stdbool.h>
 
-static inline void _unsupported_type(void) {
-  assert(false);
-}
+static inline void _unsupported_type(void) { assert(false); }
 
 #endif /* type_h */
