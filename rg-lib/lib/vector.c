@@ -29,10 +29,7 @@ void vector_append(Vector_t *vec, void *value) {
     int new_capacity = pow(vec->capacity, 2);
     void **new_values = _alloc_vector_internal_array(new_capacity);
 
-    for (int idx = 0; idx < vec->capacity; ++idx) {
-      new_values[idx] = vec->values[idx];
-    }
-
+    memcpy(new_values, vec->values, vec->size * sizeof(vec->values[0]));
     free(vec->values);
 
     vec->capacity = new_capacity;
@@ -44,10 +41,7 @@ void vector_append(Vector_t *vec, void *value) {
 }
 
 void vector_clear(Vector_t *vec) {
-  for (int idx = 0; idx <= vec->size; ++idx) {
-    vec->values[idx] = 0;
-  }
-
+  memset(vec->values, 0, vec->size);
   vec->size = 0;
 }
 

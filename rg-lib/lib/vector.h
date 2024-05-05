@@ -11,6 +11,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "type.h"
 
@@ -42,6 +43,7 @@ void vector_free(Vector_t *vec);
 static inline void **_alloc_vector_internal_array(int capacity) {
   void **values = {0};
   values = (void **)malloc(sizeof(void *) * capacity);
+  memset(values, 0, capacity);
   return values;
 }
 
